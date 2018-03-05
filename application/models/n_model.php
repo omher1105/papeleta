@@ -70,8 +70,15 @@
 				$this->db->query($sql);
 			// }
 		}
-			
-	}
+
+		function listarPapeleta($id){
+			$sql = 'select * from permiso where id ='. $id;
+			$query = $this->db->query($sql)->result_Array();
+    		return $query;
+		}
+		
+
+}
 	
 ?>
 

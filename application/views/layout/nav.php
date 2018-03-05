@@ -15,7 +15,7 @@
         
         <li><a href="#" class="waves-effect waves-light"><i class="material-icons right">person</i><span><?=$this->session->userdata('ROLASISTENCIA') ?></span></a></li>
 
-        <li><a href="<?= site_url('login/logout') ?>" class="waves-effect waves-right">Salir<i class="material-icons left">input</i> </a></li>
+        <li><a href="<?php echo base_url() ?>login/logout" class="waves-effect waves-right">Salir<i class="material-icons left">input</i> </a></li>
 
       </ul>
     </div>

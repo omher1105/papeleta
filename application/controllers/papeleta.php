@@ -13,7 +13,7 @@ public function __construct(){
 
 	function index(){
 		if ($this->session->userdata('usuario')) {
-			layout('papeleta/registrar');	
+			redirect('papeleta/ficha');
 		}else{
 			$this->load->view('login');
 		}
@@ -24,6 +24,12 @@ public function __construct(){
 		$data['tiposalida2'] = $this->n_model->get_tiposalida();
 		$data['script'] = '<script src="'.base_url().'custom/registro.js"></script>';
 		layout('papeleta/registrar', $data);
+	}
+
+	function ficha(){
+		$data['tiposalida']= $this->n_model->get_tiposalida();
+		$data['script'] = '<script src="'.base_url().'custom/ficha.js"></script>';
+		layout('papeleta/ficha', $data);
 	}
 
 	function registrarPapeleta(){
@@ -46,42 +52,6 @@ public function __construct(){
 		redirect('login/ingresar');
 	}
 
-	public function registrar()
-			{
-				// $fecha_inic = $this->input->post('fecha_inic');
-				// $codEmpleado = $this->input->post('codEmpleado');
-				// $fecha_fin = $this ->input->post('fecha_fin');
-
-				// $tipsalida = $this ->input->post('tipsalida');
-
-// registrar papeleta//
-
-	
-		// $fecha_registro = $this ->input->post('fecha_registro');
-		// $estado = $this ->input->post('estado');
-		// $id_user = $this ->input->post('id_user');
-		// $user_aprueba = $this ->input->post('user_aprueba');
-		// $fecha_aprueba = $this ->input->post('fecha_aprueba');
-
-		// $user_aprueba2 = $this ->input->post('user_aprueba2');
-		// $fecha_aprueba2 = $this ->input->post('fecha_aprueba2');
-
-		// $user_aprueba3 = $this ->input->post('user_aprueba3');
-		// $fecha_aprueba3 = $this ->input->post('fecha_aprueba3');
-
-		// $resp = $this->n_model->guardarpapeleta($fecha_inic,$codEmpleado,$tipsalida,$fecha_registro,$estado,$id_user,$user_aprueba,$fecha_aprueba,$user_aprueba2,$fecha_aprueba2,$user_aprueba3,$fecha_aprueba3 );	
-// fin de reg. papeleta//
-
-		
-				/*$resp = $this->n_model->guardarpapeleta($fecha_inic,$codEmpleado,$fecha_fin);	*/
-
-				// $data['tiposalida1'] = $this->n_model->get_tiposalidaDesc();
-				// $data['tiposalida2'] = $this->n_model->get_tiposalida();
-
-				// $this->load->view('papeleta/registrar', $data);	
-
-				}
-
 
 	 public function ajax_registrar_pedido() {
         $fecha_ini = $this->input->get('fecha_i').' '.$this->input->get('hora_ini');
@@ -91,7 +61,12 @@ public function __construct(){
         );
         echo json_encode(var_dump($res));
     }
-    	
+    
+    function listarPapeleta(){
+    	header('Content-Type: application/json');
+    	$data = $this->n_model->listarPapeleta($_SESSION['CODI_EMPL_PER']);
+    	echo json_encode($data);
+    }
 	
 	
 

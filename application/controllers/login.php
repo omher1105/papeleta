@@ -14,7 +14,7 @@ class Login extends CI_Controller {
 
 				if ($this->session->userdata('usuario')) {
 
-						$this->load->view('papeleta/ficha');	
+						redirect('papeleta/ficha');	
 				}
 				else{$this->load->view('login');}
 				
@@ -29,12 +29,6 @@ class Login extends CI_Controller {
 					$resp = $this->n_model->login($usuario,$pass);
 		  			if ($resp) {
 		  				$user= [
-			  				/*"nombre" => $resp->nombre,
-			  				"apellidos" => $resp->apellidos,
-			  				"dni" => $resp->dni,
-			  				"idtipo" => $resp->idtipo,
-			  				"usuario" => $resp->usuario,*/
-
 			  				"CODUSER" => $resp->CODUSER,
 			  				"TIPO" => $resp->CODUSER,
 
@@ -52,17 +46,22 @@ class Login extends CI_Controller {
 		  
 	  			         $this->session->set_userdata($user);
 						
-	  			         $data['tiposalida']= $this->n_model->get_tiposalida();
+	  			         
 
 	  			         //var_dump($data);
 	  			        // $data['script'] = '<script src='.base_url().'custom/ficha.js></script>';
-						$this->load->view('papeleta/ficha', $data);						
+						redirect('papeleta/ficha');						
 					       }
 					else{
 		   				redirect('');
 	     			}
 				}
 
+			}
+
+			function logout(){
+				$this->session->sess_destroy();
+        		redirect('/');
 			}
 
   
