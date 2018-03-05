@@ -71,8 +71,8 @@
 			// }
 		}
 
-		function listarPapeleta($id){
-			$sql = 'select * from permiso where id ='. $id;
+		function listarPapeleta($id , $rol){
+			$sql = 'select * from permiso where ID_USER='. $id;
 			$query = $this->db->query($sql)->result_Array();
     		return $query;
 		}

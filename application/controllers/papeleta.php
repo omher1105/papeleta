@@ -64,7 +64,7 @@ public function __construct(){
     
     function listarPapeleta(){
     	header('Content-Type: application/json');
-    	$data = $this->n_model->listarPapeleta($_SESSION['CODI_EMPL_PER']);
+    	$data = $this->n_model->listarPapeleta($_SESSION['CODI_EMPL_PER'], $_SESSION['ROLASISTENCIA']);
     	echo json_encode($data);
     }
 	
