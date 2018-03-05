@@ -1,0 +1,51 @@
+::selection { background-color: #E13300; color: white; }
+::-moz-selection { background-color: #E13300; color: white; }
+body {
+  padding: 0;
+  margin: 0;
+}
+.nav-wrapper h1{
+  position: fixed;
+  width: 100%;
+
+}
+.siono{
+  font-size: 10px;
+}
+h5{
+  font-size: 20px;
+  font-family: 'Passion One', cursive;
+  color: #455a64;
+}
+
+.Encabezados1 {
+  width: 80%;
+  padding-top: 0.1px;
+
+}
+h3 a{
+
+    color: #fff;
+}
+
+.verhover {-webkit-box-shadow: 2px 2px 5px #999;
+  -moz-box-shadow: 2px 2px 5px #999;
+  filter: shadow(color=#999999, direction=135, strength=2);}
+
+label{
+/*font-weight: bolder;
+*/
+
+
+}
+nav{
+  
+}
+
+footer{
+  
+}
+
+.contall {
+  margin: 0 auto;
+}

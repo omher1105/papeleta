@@ -1,0 +1,302 @@
+/*
+.ui-jqgrid .ui-jqgrid-view {
+    font-size: 11px !important;
+}*/
+.ui-pg-input {
+	height: 27px !important;
+}
+tr.jqgrow input[type="file"]{
+	width: 76px !important;
+}
+
+.div_titulo {
+    margin-bottom: 2px;
+    padding: 0 4px 0 8px;
+}
+
+.div_carga {
+	position:fixed;
+	top:0;
+	left:0;
+	z-index:9998;
+	width:100%;
+	height:100%;
+	background:#000;
+	opacity: 0.5;
+}
+
+
+.div_wrapper {
+    display: table;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+}
+.div_wrapper > div {
+	display: table-cell;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    vertical-align: middle;
+    width: 100%;
+	text-align: center;
+}
+#img_cargando {
+	width: 26px;
+	height: 21px;
+}
+.div_wrapper > div > div {
+	display: block;
+	color: rgb(255, 255, 255);
+    font-size: 40px;
+    text-align: center;
+}
+
+.titulo_gruta {
+    background: url("../img/folder-search-icon.png") no-repeat scroll left center transparent;
+    color: #852d2c !important;
+    line-height: normal;
+    margin-left: 2px !important;
+    padding-bottom: 0 !important;
+    padding-left: 28px !important;
+	
+}
+
+.div_titulo h2 {
+    color: #000;
+    font-family: "Jura",sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+}
+
+
+span.spn_autoayuda {
+    background: url("../img/help-icon.png") no-repeat scroll left center transparent;
+    cursor: pointer;
+    float: right;
+    height: 23px;
+    margin-top: 1px;
+    width: 16px;
+}
+
+/*
+div.frozen-div {
+	top: 23px !important;
+}
+div.frozen-bdiv {
+	top: 46px !important;
+}*/
+label.lbl_group_table {
+	font-weight: bold;
+	/*font-size: 14px;*/
+	margin: 4px;
+	color: blue;
+}
+.ui-jqgrid-ftable {
+	font-size: 14px !important;
+}
+
+div.ui-jqgrid-hdiv {
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+img.jqgrid_img_producto {
+	cursor: pointer;
+}
+/*td > .jqgrid_img_producto {
+	height: 70px;
+}*/
+.ui-state-highlight .ui-icon {
+    background-image: url("lib/jquery-ui/css/custom-theme/images/ui-icons_ffffff_256x240.png") !important;
+}
+/*
+.jqgrow .btn-mini {
+	height: auto !important;
+    width: auto !important;
+	padding: 0 3px;
+	margin-right: 1px;
+}
+*/
+
+tbody .ui-jqgrid tr.jqgrow {
+	height: 35px;
+}
+
+.chzn-container-single .chzn-single {
+	color: rgb(68, 68, 68) !important;
+}
+.chzn-container-single .chzn-single span {
+	font-size: 11px !important;
+	font-family: Verdana,Arial,sans-serif !important;
+}
+
+div.chzn-container {
+	position: absolute !important;
+	float: left !important;
+	margin-top: -13px;
+}
+/*div.chzn-container li {*/
+.chzn-container .chzn-results li {
+	color: rgb(54, 54, 54);
+	font-size: 11px;
+	font-family: Verdana,Arial,sans-serif;
+}
+
+.ui-jqgrid-bdiv tbody select {
+	padding: 0 0 0 2px !important;
+	height: auto !important;
+	margin: 0 !important;
+	/*width: auto !important;*/
+}
+/*
+.ui-jqgrid-bdiv tbody .chzn-search input, .ui-jqgrid-bdiv tbody input[type="file"] {
+	text-transform: none !important;
+}*/
+.ui-jqgrid-bdiv tbody input {
+	padding: 3px 0 !important;
+	height: auto !important;
+	margin-top: -2px !important;
+	/*text-transform: uppercase;*/
+}
+td.tbl_materiales_consolidado_imagen img {
+	width: 70px;
+	height: 70px;
+}
+div.ui-jqgrid-titlebar {
+	display: none !important;
+}
+/*
+div.ui-jqgrid-titlebar > span {
+	margin-top: 6px !important;
+}
+div.ui-jqgrid-titlebar {
+	height: 24px !important;
+}*/
+
+div.ui-jqgrid-sdiv td {
+	background-color: #FFFD80;
+}
+li.ctm_separador {
+	border-bottom-color: #BABABA !important;
+}
+
+div#jqContextMenu ul {
+	background-color: #fcfdfd !important;
+	border: 1px solid #a6c9e2 !important;
+	width: auto !important;
+}
+
+div#jqContextMenu li span.ctm_item_texto {
+	font-size: 11px;
+	font-family: "Verdana";
+	margin-right: 20px;
+}
+div#jqContextMenu li span.ui-icon {
+	float: left;
+	margin: 2px 5px 0;
+}
+
+#dlg_enviar_correo {
+	width: auto !important;
+}
+.dgl_formulario {
+	border: 1px solid rgb(3, 163, 126);
+	box-shadow: 5px 15px 20px rgba(0, 0, 0, 0.35);
+}
+.dgl_formulario .modal-header {
+	background-color: rgb(3, 163, 126);
+	background-image: linear-gradient(to bottom, rgb(4, 205, 159), rgb(3, 163, 126));
+	background-repeat: repeat-x;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	color: rgb(255, 255, 255);
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	cursor: move;
+	border-radius: 6px 6px 0 0;
+}
+
+#gview_tbl_materiales_consolidado > .ui-jqgrid-bdiv {
+    height: auto !important;
+	/*min-height: 300px !important;*/
+}
+.div_contenido_evaluation div.span1 {
+	margin: 11px 30px 30px;
+}
+.shell {
+	width: auto !important;
+}
+.ui-jqgrid tr.jqgrow td {
+	white-space: normal !important;
+}
+.main .post-cnt p {
+    padding-bottom: 0;
+}
+.tbl_subgrilla tbody tr {
+	background-color: #F5FFF5;
+}
+/*
+tr.jqgrow:hover {
+	background-color: #000;
+	border: 0 none;
+	color: #FFF;
+}
+*/
+/*.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {*/
+/*.ui-widget-content .ui-state-hover, .ui-widget-content .ui-state-focus {*/
+/*.ui-jqgrid-bdiv .jqgrow:hover,.ui-jqgrid-bdiv .jqgrow:focus {*/
+/*.ui-widget-content .ui-state-hover, .ui-widget-content .ui-state-focus {
+	background-color: #B3FFDF;
+	border: 0 none;
+	color: #000;
+}
+th.ui-state-hover {
+	background-color: none !important;
+}*/
+
+/*div.ui-jqgrid-bdiv tbody tr:hover {
+.ui-jqgrid-btable tbody tr:hover {*/
+.div_contenido_evaluation tbody tr:hover {
+	background-color: #A9F5E1 !important;
+	border: 0 none;
+	color: #000;
+}
+div.ui-pager-control tr:hover {
+	background-color: inherit !important;
+}
+.ui-jqgrid .ui-state-highlight, .ui-jqgrid .ui-widget-content .ui-state-highlight, .ui-jqgrid .ui-widget-header .ui-state-highlight {
+    background-color: #E6E6E6 !important;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    color: rgb(255, 255, 255);
+}
+.ui-jqgrid .ui-state-highlight .ui-state-default,.ui-jqgrid .ui-state-highlight .ui-widget-content .ui-state-default,.ui-jqgrid .ui-state-highlight .ui-widget-header .ui-state-default {
+	color: rgb(255, 255, 255);
+}
+
+.div_contenido_evaluation .div_boton_principal span {
+	display: block;
+}
+.div_contenido_evaluation span1 {
+	margin: 20px;
+}
+.div_contenido_evaluation button.btn-gruta {
+	height: 100px;
+    width: 120px;
+}
+.div_contenido_evaluation .div_botones button.btn-gruta {
+	width: 150px;
+	height: auto;
+}
+.tbl_td_sub_total {
+	background-color: #FFD8D8;
+}
+.div_atendiendo_pedido div {
+	padding: 10px !important;
+}
+.wysihtml5-toolbar span, .wysihtml5-toolbar a {
+	color: rgb(51, 51, 51) !important;
+}
+
