@@ -38,8 +38,20 @@ $( document ).ready(function() {
 					background_color = "#111cca"
 				}
 
-				if(rol_usuario == 3 && data[i].ESTADO_DESC == 'PENDIENTE'){
-					rol_opciones = `<button><i class="ti ti-check"></i></button>
+				if(rol_usuario == 1 && data[i].ESTADO_DESC == 'DEFASADO'){
+					rol_opciones = `<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-check"></i></button>
+									<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-reload"></i></button>`;
+				}else if(rol_usuario == 1 && data[i].ESTADO_DESC == 'PENDIENTE'){
+					rol_opciones = `<form action="${base_url}papeleta/actualizarPapeletaSegundoFiltro/${data[i].ID}"><button type="submit"><i class="ti ti-check"></i></button></form>
+									<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-reload"></i></button>`;
+				}else if(rol_usuario == 1 && data[i].ESTADO_DESC == 'PENDIENTE POR APROBAR'){
+					rol_opciones = `<form action="${base_url}papeleta/actualizarPapeletaUltimo/${data[i].ID}"><button type="submit"><i class="ti ti-check"></i></button></form>
+									<button><i class="ti ti-reload"></i></button>`;
+				}else if(rol_usuario == 1 && data[i].ESTADO_DESC == 'AUTORIZADO'){
+					rol_opciones = `<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-check"></i></button>
+									<button ><i class="ti ti-list"></i></button>`;
+				}else if(rol_usuario == 3 && data[i].ESTADO_DESC == 'PENDIENTE'){
+					rol_opciones = `<form action="${base_url}papeleta/actualizarPapeletaSegundoFiltro/${data[i].ID}"><button type="submit"><i class="ti ti-check"></i></button></form>
 									<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-reload"></i></button>`;
 				} else if(rol_usuario == 3 && data[i].ESTADO_DESC == 'PENDIENTE POR APROBAR'){
 					rol_opciones = `<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-check"></i></button>
@@ -67,7 +79,7 @@ $( document ).ready(function() {
 
 				$('#tbl_requerimiento>tbody').append(`
 					<tr>
-						<td style="text-align:center">
+						<td style="text-align:center;display: -webkit-box;">
 							${rol_opciones}
 						</td>
 						<td onclick="ingresoPapeleta(${data[i].ID})"><a>PAP-${data[i].ID}</a></td>

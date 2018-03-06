@@ -93,8 +93,8 @@
 					ON P.ID_USER = US.CODI_EMPL_PER
 					INNER  JOIN tipo_operacion T_O
 					on P.TIPO_OP = T_O.CODI_OPER_TOP
-					where p.ID_USER=". $id ."order by 1 asc";
-				}else if($rol == 3){ // administrativo 
+					where p.ID_USER=". $id ." order by 1 desc";
+				}else if($rol == 3 || $rol == 1){ // administrativo  o director
 					$sql = "select 
 					P.ID,
 					P.ID_USER,
@@ -114,7 +114,7 @@
 					INNER JOIN usuarios_sisvis US
 					ON P.ID_USER = US.CODI_EMPL_PER
 					INNER  JOIN tipo_operacion T_O
-					on P.TIPO_OP = T_O.CODI_OPER_TOP order by 1 asc";
+					on P.TIPO_OP = T_O.CODI_OPER_TOP order by 1 desc";
 				}
 			
 			$query = $this->db->query($sql)->result_Array();
