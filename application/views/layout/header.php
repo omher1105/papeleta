@@ -30,8 +30,10 @@
 
 </head>
 <body>
+
 <script type="text/javascript">
 	$(document).ready(function(){
 		base_url = '<?php echo base_url() ?>';
+		rol_usuario = '<?php echo $_SESSION['ROLASISTENCIA'] ?>';
 	})
 </script>

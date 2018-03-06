@@ -41,7 +41,7 @@ public function __construct(){
 			$data['FECHA_INI'] = $_POST['f_inicio'].' '.$_POST['t_inicio'];
 			$data['FECHA_FIN'] = $_POST['f_fin'].' '.$_POST['t_fin'];
 		}
-		$data['ID'] = $_SESSION['CODI_EMPL_PER'];
+		//$data['ID'] = $_SESSION['CODI_EMPL_PER'];
 		$data['TIPO_OP'] = $_POST['TIPO_OP'];
 		$data['FECHA_REGISTRO'] = '2013-05-11 00:00:00';
 		$data['ESTADO'] = 1;
@@ -49,7 +49,7 @@ public function __construct(){
 		//debug($data);
 		$this->n_model->crearPapeleta($data);
 
-		redirect('login/ingresar');
+		redirect('papeleta/ficha');
 	}
 
 
@@ -66,6 +66,17 @@ public function __construct(){
     	header('Content-Type: application/json');
     	$data = $this->n_model->listarPapeleta($_SESSION['CODI_EMPL_PER'], $_SESSION['ROLASISTENCIA']);
     	echo json_encode($data);
+    }
+
+
+    function actualizarPapeletaSegundoFiltro($id){
+    	$this->n_model->actualizarPapeleta($id, 2);
+    	redirect('papeleta/ficha');
+    }
+
+    function actualizarPapeletaUltimo($id){
+    	$this->n_model->actualizarPapeleta($id, 3);
+    	redirect('papeleta/ficha');
     }
 	
 	

@@ -50,7 +50,7 @@
           </table>
             
             <div class="form-group">
-              <a id="btn_buscar" href="#" class="btn"> <i class="ti ti-search"></i>Buscar</a>               
+              <a id="btn btn_buscar" href="#" class="btn"> <i class="ti ti-search"></i>Buscar</a>               
               <a class="btn" href="<?php echo base_url() ?>papeleta/registro" > <i class="ti ti-archive"></i>Agregar </a>
             </div>
             
@@ -66,7 +66,7 @@
                 </tr>
                 </table>
                -->
-               <table class="table table-hover" id="tbl_requerimiento"></table>
+               <table class="table table-hover" id="tbl_requerimiento" style="font-size: 10px;"></table>
                     </div>
                     <!-- row end -->
           
@@ -75,4 +75,6 @@
                     
                 
         </section>
+
+        <?php //debug($_SESSION); ?>
 

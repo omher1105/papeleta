@@ -64,7 +64,7 @@
 		function crearPapeleta($data){
 			//debug($data);	
 			// if($data['ESTADO'] == 1){
-				$sql = 'insert into permiso(ID, FECHA_INI, FECHA_FIN, TIPO_OP, FECHA_REGISTRO, ESTADO, ID_USER) values("'.$data['ID'].'","'.$data['FECHA_INI'].'","'.$data['FECHA_FIN'].'","'.$data['TIPO_OP'].'","'.$data['FECHA_REGISTRO'].'","'.$data['ESTADO'].'","'.$data['ID_USER'].'")';
+				$sql = 'insert into permiso(FECHA_INI, FECHA_FIN, TIPO_OP, FECHA_REGISTRO, ESTADO, ID_USER) values("'.$data['FECHA_INI'].'","'.$data['FECHA_FIN'].'","'.$data['TIPO_OP'].'","'.$data['FECHA_REGISTRO'].'","'.$data['ESTADO'].'","'.$data['ID_USER'].'")';
 				echo $sql;
 
 				$this->db->query($sql);
@@ -72,9 +72,58 @@
 		}
 
 		function listarPapeleta($id , $rol){
-			$sql = 'select * from permiso where ID_USER='. $id;
+			if($rol == 6){
+				$sql = "select 
+					P.ID,
+					P.ID_USER,
+					US.DES_USUARIO,
+					T_O.CODI_OPER_TOP,
+					T_O.TIPO_OPER_TOP,
+					T_O.DESC_OPER_TOP,
+					P.FECHA_INI,
+					P.FECHA_FIN,
+					P.ESTADO,
+					CASE 
+					WHEN P.ESTADO=1 and fecha_ini < sysdate() THEN 'DEFASADO'
+					WHEN P.ESTADO=2 THEN 'PENDIENTE'
+					WHEN P.ESTADO=3 THEN 'AUTORIZADO'
+					ELSE 'NO AUTORIZADO' END AS ESTADO_DESC
+					from permiso P
+					INNER JOIN usuarios_sisvis US
+					ON P.ID_USER = US.CODI_EMPL_PER
+					INNER  JOIN tipo_operacion T_O
+					on P.TIPO_OP = T_O.CODI_OPER_TOP
+					where p.ID_USER=". $id ."order by 1 asc";
+				}else if($rol == 3){ // administrativo 
+					$sql = "select 
+					P.ID,
+					P.ID_USER,
+					US.DES_USUARIO,
+					T_O.CODI_OPER_TOP,
+					T_O.TIPO_OPER_TOP,
+					T_O.DESC_OPER_TOP,
+					P.FECHA_INI,
+					P.FECHA_FIN,
+					P.ESTADO,
+					CASE 
+					WHEN P.ESTADO=1 and fecha_ini < sysdate() THEN 'DEFASADO'
+					WHEN P.ESTADO=2 THEN 'PENDIENTE POR APROBAR'
+					WHEN P.ESTADO=3 THEN 'AUTORIZADO'
+					ELSE 'PENDIENTE' END AS ESTADO_DESC
+					from permiso P
+					INNER JOIN usuarios_sisvis US
+					ON P.ID_USER = US.CODI_EMPL_PER
+					INNER  JOIN tipo_operacion T_O
+					on P.TIPO_OP = T_O.CODI_OPER_TOP order by 1 asc";
+				}
+			
 			$query = $this->db->query($sql)->result_Array();
     		return $query;
+		}
+
+		function actualizarPapeleta($id, $estado){
+			$sql = "update permiso set estado=".$estado." where id = ".$id;
+			$this->db->query($sql);
 		}
 		
 

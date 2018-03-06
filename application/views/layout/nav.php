@@ -13,7 +13,9 @@
 
         <li><a href="<?= site_url('login/nuevo') ?>" class="waves-effect waves-right"><i class="material-icons left">edit</i><span>Nuevo</span></a></li>
         
-        <li><a href="#" class="waves-effect waves-light"><i class="material-icons right">person</i><span><?=$this->session->userdata('ROLASISTENCIA') ?></span></a></li>
+        <li><a href="#" class="waves-effect waves-light"><i class="material-icons right">person</i>
+          <span><?php if($_SESSION['ROLASISTENCIA'] == 6){echo 'Empleado';}else if($_SESSION['ROLASISTENCIA'] == 3){ echo 'Administrativo';}else if($_SESSION['ROLASISTENCIA'] == 1){echo 'Director Tecnico';}  ?></span></a>
+        </li>
 
         <li><a href="<?php echo base_url() ?>login/logout" class="waves-effect waves-right">Salir<i class="material-icons left">input</i> </a></li>
 
