@@ -16,7 +16,7 @@
               
               <thead class="cabecera">
               <tr>
-                <td colspan=4><input type="text" class="form-control datepicker" id="fecha" name="fecha_inic"  required="required" placeholder ="Fecha de Inicio" readonly  />
+                <td colspan=4><input type="text" class="form-control datepicker" id="datepicker" name="fecha_inic"  required="required" placeholder ="Fecha de Inicio" readonly  />
                 </td>
                 <td colspan=2><input type="text" class="form-control" id="usuario" name="codEmpleado"  required="required"  value="<?php echo $_SESSION['CODI_EMPL_PER'];?>" placeholder ="Cod. Empleado"  readonly />
                 </td>

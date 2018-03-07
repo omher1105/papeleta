@@ -1,6 +1,6 @@
 $( document ).ready(function() {
 
-	$('.datepicker').datepicker({
+	$('#datepicker').datepicker({
 	    format: 'mm/dd/yyyy',
 	    startDate: '-3d'
 	});

@@ -28,8 +28,12 @@
   <!-- <link rel="stylesheet" href="<?php echo base_url() ?>plantillas/materialize/css/main.css"> -->
   <!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>custom/datatable.css"> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"> </script>
-  <link href="<?php echo base_url() ?>plantillas/css/bootstrap.min.css" rel="stylesheet">
-  <script src="<?php echo base_url() ?>plantillas/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!--   <link href="<?php echo base_url() ?>plantillas/css/bootstrap.min.css" rel="stylesheet">
+  <script src="<?php echo base_url() ?>plantillas/js/bootstrap.min.js"></script> -->
+
 
 
 
