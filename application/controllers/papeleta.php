@@ -44,7 +44,7 @@ public function __construct(){
 		//$data['ID'] = $_SESSION['CODI_EMPL_PER'];
 		$data['TIPO_OP'] = $_POST['TIPO_OP'];
 		$data['FECHA_REGISTRO'] = '2013-05-11 00:00:00';
-		$data['ESTADO'] = 1;
+		$data['ESTADO'] = 2;
 		$data['ID_USER'] = $_SESSION['CODI_EMPL_PER'];
 		//debug($data);
 		$this->n_model->crearPapeleta($data);
@@ -69,15 +69,12 @@ public function __construct(){
     }
 
 
-    function actualizarPapeletaSegundoFiltro($id){
-    	$this->n_model->actualizarPapeleta($id, 2);
+    function actualizarPapeletaSegundoFiltro($id, $estado){
+    	$this->n_model->actualizarPapeleta($id, $estado);
     	redirect('papeleta/ficha');
     }
 
-    function actualizarPapeletaUltimo($id){
-    	$this->n_model->actualizarPapeleta($id, 3);
-    	redirect('papeleta/ficha');
-    }
+    
 	
 	
 

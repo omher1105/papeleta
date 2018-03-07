@@ -28,53 +28,84 @@ $( document ).ready(function() {
 				let estado = 'No Autorizado';
 				let background_color = 'red';
 				let color = '#ffffff';
-				if(data[i].ESTADO_DESC == 'NO AUTORIZADO' || data[i].ESTADO_DESC == 'DEFASADO'){
-					background_color = 'red';
-				}else if(data[i].ESTADO_DESC == 'PENDIENTE' || data[i].ESTADO_DESC == 'PENDIENTE POR APROBAR'){
-					background_color = '#ffae00';
-				} else if(data[i].ESTADO_DESC == 'AUTORIZADO'){
-					background_color = 'green';
-				} else if(data[i].ESTADO == 4){
-					background_color = "#111cca"
-				}
 
-				if(rol_usuario == 1 && data[i].ESTADO_DESC == 'DEFASADO'){
-					rol_opciones = `<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-check"></i></button>
-									<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-reload"></i></button>`;
-				}else if(rol_usuario == 1 && data[i].ESTADO_DESC == 'PENDIENTE'){
-					rol_opciones = `<form action="${base_url}papeleta/actualizarPapeletaSegundoFiltro/${data[i].ID}"><button type="submit"><i class="ti ti-check"></i></button></form>
-									<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-reload"></i></button>`;
-				}else if(rol_usuario == 1 && data[i].ESTADO_DESC == 'PENDIENTE POR APROBAR'){
-					rol_opciones = `<form action="${base_url}papeleta/actualizarPapeletaUltimo/${data[i].ID}"><button type="submit"><i class="ti ti-check"></i></button></form>
-									<button><i class="ti ti-reload"></i></button>`;
-				}else if(rol_usuario == 1 && data[i].ESTADO_DESC == 'AUTORIZADO'){
-					rol_opciones = `<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-check"></i></button>
-									<button ><i class="ti ti-list"></i></button>`;
-				}else if(rol_usuario == 3 && data[i].ESTADO_DESC == 'PENDIENTE'){
-					rol_opciones = `<form action="${base_url}papeleta/actualizarPapeletaSegundoFiltro/${data[i].ID}"><button type="submit"><i class="ti ti-check"></i></button></form>
-									<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-reload"></i></button>`;
-				} else if(rol_usuario == 3 && data[i].ESTADO_DESC == 'PENDIENTE POR APROBAR'){
-					rol_opciones = `<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-check"></i></button>
-									<button><i class="ti ti-reload"></i></button>`;
-				}else if(rol_usuario == 3 && data[i].ESTADO_DESC == 'DEFASADO'){
-					rol_opciones = `<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-check"></i></button>
-									<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-reload"></i></button>`;
-				}else if(rol_usuario == 3 && data[i].ESTADO_DESC == 'AUTORIZADO'){
-					rol_opciones = `<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-check"></i></button>
-									<button ><i class="ti ti-list"></i></button>`;
-				}else if(rol_usuario == 6 && data[i].ESTADO == 3){
+				if(data[i].ESTADO == 1){
+					background_color = 'red';
+				}else if(data[i].ESTADO >=  2 && data[i].ESTADO <=  6){
+					background_color = '#ffae00';
+				} else if(data[i].ESTADO ==  7){
+					background_color = 'green';
+				} 
+
+				//EMPLEADO VALIDACION
+				if(data[i].ESTADO == 7){
 					rol_opciones = `<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-check"></i></button>
 									<button><i class="ti ti-list"></i></button>`;
-				} else if(rol_usuario == 6 && data[i].ESTADO == 1){
+				} else if(data[i].ESTADO == 1){
 					rol_opciones = `<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-check"></i></button>
-									<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-list"></i></button>`;
-				} else if(rol_usuario == 6 && data[i].ESTADO == 2){
+									<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-close"></i></button>`;
+				} else if(rol_usuario == 6 && data[i].ESTADO >=  2 && data[i].ESTADO <=  6){
 					rol_opciones = `<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-check"></i></button>
 									<button><i class="ti ti-reload"></i></button>`;
-				} else{
-					rol_opciones = `<button><i class="ti ti-check"></i></button>
-									<button><i class="ti ti-reload"></i></button>
-									<button><i class="ti ti-list"></i></button>`;
+				} else if(rol_usuario == 2  && data[i].ESTADO ==  2){
+					rol_opciones = `<form action="${base_url}papeleta/actualizarPapeletaSegundoFiltro/${data[i].ID}/3">
+									<button><i class="ti ti-check"></i></button>
+									</form>
+									<form action="${base_url}papeleta/actualizarPapeletaSegundoFiltro/${data[i].ID}/1">
+									<button><i class="ti ti-close"></i></button>
+									</form>`;
+				}else if(rol_usuario == 2  && data[i].ESTADO >=  3 && data[i].ESTADO <=  6){
+					rol_opciones = `<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-check"></i></button>
+									<button><i class="ti ti-reload"></i></button>`;
+				}else if(rol_usuario == 3 && data[i].ESTADO ==  2){
+					rol_opciones = `<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-check"></i></button>
+									<button><i class="ti ti-reload"></i></button>`;
+				}else if(rol_usuario == 3 && data[i].ESTADO ==  3){
+					rol_opciones = `<form action="${base_url}papeleta/actualizarPapeletaSegundoFiltro/${data[i].ID}/4">
+									<button><i class="ti ti-check"></i></button>
+									</form>
+									<form action="${base_url}papeleta/actualizarPapeletaSegundoFiltro/${data[i].ID}/1">
+									<button><i class="ti ti-close"></i></button>
+									</form>`;
+				} else if(rol_usuario == 3  && data[i].ESTADO >=  4 && data[i].ESTADO <=  6){
+					rol_opciones = `<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-check"></i></button>
+									<button><i class="ti ti-reload"></i></button>`;
+				} else if(rol_usuario == 4 && data[i].ESTADO >=  2 && data[i].ESTADO <=  3){
+					rol_opciones = `<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-check"></i></button>
+									<button><i class="ti ti-reload"></i></button>`;
+				} else if(rol_usuario == 4 && data[i].ESTADO ==  4){
+					rol_opciones = `<form action="${base_url}papeleta/actualizarPapeletaSegundoFiltro/${data[i].ID}/5">
+									<button><i class="ti ti-check"></i></button>
+									</form>
+									<form action="${base_url}papeleta/actualizarPapeletaSegundoFiltro/${data[i].ID}/1">
+									<button><i class="ti ti-close"></i></button>
+									</form>`;
+				} else if(rol_usuario == 4  && data[i].ESTADO >=  5 && data[i].ESTADO <=  6){
+					rol_opciones = `<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-check"></i></button>
+									<button><i class="ti ti-reload"></i></button>`;
+				} else if(rol_usuario == 1 && data[i].ESTADO >=  2 && data[i].ESTADO <=  4){
+					rol_opciones = `<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-check"></i></button>
+									<button><i class="ti ti-reload"></i></button>`;
+				} else if(rol_usuario == 1 &&  data[i].ESTADO ==  5){
+					rol_opciones = `<form action="${base_url}papeleta/actualizarPapeletaSegundoFiltro/${data[i].ID}/6">
+									<button><i class="ti ti-check"></i></button>
+									</form>
+									<form action="${base_url}papeleta/actualizarPapeletaSegundoFiltro/${data[i].ID}/1">
+									<button><i class="ti ti-close"></i></button>
+									</form>`;
+				} else if(rol_usuario == 1  && data[i].ESTADO ==  6){
+					rol_opciones = `<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-check"></i></button>
+									<button><i class="ti ti-reload"></i></button>`;
+				} else if(rol_usuario == 5  && data[i].ESTADO >=  2 && data[i].ESTADO <=  5){
+					rol_opciones = `<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-check"></i></button>
+									<button><i class="ti ti-reload"></i></button>`;
+				} else if(rol_usuario == 5  && data[i].ESTADO ==  6){
+					rol_opciones = `<form action="${base_url}papeleta/actualizarPapeletaSegundoFiltro/${data[i].ID}/7">
+									<button><i class="ti ti-check"></i></button>
+									</form>
+									<form action="${base_url}papeleta/actualizarPapeletaSegundoFiltro/${data[i].ID}/1">
+									<button><i class="ti ti-close"></i></button>
+									</form>`;
 				}
 
 				$('#tbl_requerimiento>tbody').append(`

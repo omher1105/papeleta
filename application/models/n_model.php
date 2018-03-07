@@ -72,6 +72,7 @@
 		}
 
 		function listarPapeleta($id , $rol){
+			// WHEN P.ESTADO=1 and fecha_ini < sysdate() THEN 'DEFASADO'
 			if($rol == 6){
 				$sql = "select 
 					P.ID,
@@ -84,9 +85,12 @@
 					P.FECHA_FIN,
 					P.ESTADO,
 					CASE 
-					WHEN P.ESTADO=1 and fecha_ini < sysdate() THEN 'DEFASADO'
-					WHEN P.ESTADO=2 THEN 'PENDIENTE'
-					WHEN P.ESTADO=3 THEN 'AUTORIZADO'
+					WHEN P.ESTADO=2 THEN 'PENDIENTE ADMINISTRATIVO'
+					WHEN P.ESTADO=3 THEN 'PENDIENTE JEFE DE UNIDAD'
+					WHEN P.ESTADO=4 THEN 'PENDIENTE DIRECTOR EJECUTIVO'
+					WHEN P.ESTADO=5 THEN 'PENDIENTE DIRECTOR TECNICO'
+					WHEN P.ESTADO=6 THEN 'PENDIENTE RRHH'
+					WHEN P.ESTADO=7 THEN 'AUTORIZADO'
 					ELSE 'NO AUTORIZADO' END AS ESTADO_DESC
 					from permiso P
 					INNER JOIN usuarios_sisvis US
@@ -94,27 +98,70 @@
 					INNER  JOIN tipo_operacion T_O
 					on P.TIPO_OP = T_O.CODI_OPER_TOP
 					where p.ID_USER=". $id ." order by 1 desc";
-				}else if($rol == 3 || $rol == 1){ // administrativo  o director
+				}else if($rol == 1 || $rol == 2 || $rol == 3||$rol == 4 ){ // administrativo  o director
+					$local = 6130;
 					$sql = "select 
-					P.ID,
-					P.ID_USER,
-					US.DES_USUARIO,
-					T_O.CODI_OPER_TOP,
-					T_O.TIPO_OPER_TOP,
-					T_O.DESC_OPER_TOP,
-					P.FECHA_INI,
-					P.FECHA_FIN,
-					P.ESTADO,
-					CASE 
-					WHEN P.ESTADO=1 and fecha_ini < sysdate() THEN 'DEFASADO'
-					WHEN P.ESTADO=2 THEN 'PENDIENTE POR APROBAR'
-					WHEN P.ESTADO=3 THEN 'AUTORIZADO'
-					ELSE 'PENDIENTE' END AS ESTADO_DESC
-					from permiso P
-					INNER JOIN usuarios_sisvis US
-					ON P.ID_USER = US.CODI_EMPL_PER
-					INNER  JOIN tipo_operacion T_O
-					on P.TIPO_OP = T_O.CODI_OPER_TOP order by 1 desc";
+							P.ID,
+							P.ID_USER,
+							US.DES_USUARIO,
+							T_O.CODI_OPER_TOP,
+							T_O.TIPO_OPER_TOP,
+							T_O.DESC_OPER_TOP,
+							P.FECHA_INI,
+							P.FECHA_FIN,
+							P.ESTADO,
+							CASE 
+							WHEN P.ESTADO=2 THEN 'PENDIENTE ADMINISTRATIVO'
+							WHEN P.ESTADO=3 THEN 'PENDIENTE JEFE DE UNIDAD'
+							WHEN P.ESTADO=4 THEN 'PENDIENTE DIRECTOR EJECUTIVO'
+							WHEN P.ESTADO=5 THEN 'PENDIENTE DIRECTOR TECNICO'
+							WHEN P.ESTADO=6 THEN 'PENDIENTE RRHH'
+							WHEN P.ESTADO=7 THEN 'AUTORIZADO'
+							ELSE 'NO AUTORIZADO' END AS ESTADO_DESC,
+							US.ROLASISTENCIA,
+							TR.DESCRIPCION
+							from permiso P
+							INNER JOIN usuarios_sisvis US
+							ON P.ID_USER = US.CODI_EMPL_PER
+							INNER  JOIN tipo_operacion T_O
+							on P.TIPO_OP = T_O.CODI_OPER_TOP 
+							inner join tb_rol TR
+							on TR.ID = US.ROLASISTENCIA
+							INNER JOIN v_lista_personal_total VP
+							ON VP.CODI_EMPL_PER = US.CODI_EMPL_PER
+							WHERE VP.UBIC_FISI_TDE = ".$local."
+							order by 1 desc";
+				} else if($rol == 5){
+					$sql = "select 
+							P.ID,
+							P.ID_USER,
+							US.DES_USUARIO,
+							T_O.CODI_OPER_TOP,
+							T_O.TIPO_OPER_TOP,
+							T_O.DESC_OPER_TOP,
+							P.FECHA_INI,
+							P.FECHA_FIN,
+							P.ESTADO,
+							CASE 
+							WHEN P.ESTADO=2 THEN 'PENDIENTE ADMINISTRATIVO'
+							WHEN P.ESTADO=3 THEN 'PENDIENTE JEFE DE UNIDAD'
+							WHEN P.ESTADO=4 THEN 'PENDIENTE DIRECTOR EJECUTIVO'
+							WHEN P.ESTADO=5 THEN 'PENDIENTE DIRECTOR TECNICO'
+							WHEN P.ESTADO=6 THEN 'PENDIENTE RRHH'
+							WHEN P.ESTADO=7 THEN 'AUTORIZADO'
+							ELSE 'NO AUTORIZADO' END AS ESTADO_DESC,
+							US.ROLASISTENCIA,
+							TR.DESCRIPCION
+							from permiso P
+							INNER JOIN usuarios_sisvis US
+							ON P.ID_USER = US.CODI_EMPL_PER
+							INNER  JOIN tipo_operacion T_O
+							on P.TIPO_OP = T_O.CODI_OPER_TOP 
+							inner join tb_rol TR
+							on TR.ID = US.ROLASISTENCIA
+							INNER JOIN v_lista_personal_total VP
+							ON VP.CODI_EMPL_PER = US.CODI_EMPL_PER
+							order by 1 desc";
 				}
 			
 			$query = $this->db->query($sql)->result_Array();
