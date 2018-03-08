@@ -130,6 +130,7 @@ $( document ).ready(function() {
 			}
 			 $('#tbl_requerimiento').DataTable({
 			 	"pageLength": 10,
+			 	"bLengthChange": false,
 			 	"language":{
 						    "sProcessing":     "Procesando...",
 						    "sLengthMenu":     "Mostrar _MENU_ registros",
