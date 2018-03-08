@@ -27,16 +27,19 @@
       <br><br>
       <div class="col s9" id="date-frame">
         <div class="col s6">
-          <input type="date" name="f_inicio">
+          <!-- <input type="date" name="f_inicio" class="datepicker"> -->
+           <input type="text" class="form-control datepicker" id="f_inicio" name="f_inicio"  required="required" placeholder ="Fecha Final" readonly  />
         </div>
         <div class="col s6">
-          <input type="date" name="f_fin">
+          <!-- <input type="date" name="f_fin" class="datepicker"> -->
+          <input type="text" class="form-control datepicker" id="f_fin" name="f_fin"  required="required" placeholder ="Fecha Final" readonly  />
         </div>
       </div>
       <br>
       <div class="col s9" id="time-frame">
         <div class="col s6">
-          <input type="time" name="t_inicio">
+          <input type="time" name="t_inicio" class="datetimepicker">
+          <!-- <input type="text" class="form-control datetimepicker" id="t_inicio" name="t_inicio"  required="required" placeholder ="Fecha Final" readonly  /> -->
         </div>
         <div class="col s6">
           <input type="time" name="t_fin">
@@ -45,7 +48,7 @@
       <br><br>
       <div class="col s12" align="center" style="padding-bottom: 16px;">
         <button class="btn" type="submit"> <i class="ti ti-archive"></i>Registrar </button></td>
-        <a href="ficha.php" class="btn"> <i class="ti ti-files"></i>Listar</a>  
+        <a href="<?php echo base_url()?>papeleta/ficha" class="btn"> <i class="ti ti-files"></i>Listar</a>  
       </div>
     </div>  
   </div>

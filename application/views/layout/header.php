@@ -31,6 +31,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
 <!--   <link href="<?php echo base_url() ?>plantillas/css/bootstrap.min.css" rel="stylesheet">
   <script src="<?php echo base_url() ?>plantillas/js/bootstrap.min.js"></script> -->
 

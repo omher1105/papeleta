@@ -20,6 +20,7 @@
 <!--CHOSEN-->
 <!-- <script src="<?php echo base_url() ?>plantillas/js/chosen/chosen.jquery.min.js"></script> -->
 <link rel="stylesheet" href="<?php echo base_url() ?>plantillas/js/chosen/chosen.css">
+<script type="text/javascript" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
 <!--CALENDAR-->
 <!-- <link type="text/css" rel="stylesheet" src="<?php echo base_url() ?>plantillas/css/bootstrap-datepicker/css/datepicker.css"/>   -->

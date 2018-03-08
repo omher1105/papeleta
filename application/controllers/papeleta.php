@@ -75,7 +75,9 @@ public function __construct(){
     }
 
     
-	
+	function impresion(){
+		$this->load->view('impresion');
+	}
 	
 
 
