@@ -36,7 +36,7 @@ public function __construct(){
 		//debug($_SESSION);
 		if($_POST['s_tipo'] == 'D'){
 			$data['FECHA_INI'] = $_POST['f_inicio'].' 00:00:00';
-			$data['FECHA_FIN'] = $_POST['f_fin'].' 00:00:00';
+			$data['FECHA_FIN'] = $_POST['f_fin'].' 24:00:00';
 		}else if($_POST['s_tipo'] == 'H'){
 			$data['FECHA_INI'] = $_POST['f_inicio'].' '.$_POST['t_inicio'];
 			$data['FECHA_FIN'] = $_POST['f_fin'].' '.$_POST['t_fin'];
