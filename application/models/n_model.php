@@ -2,8 +2,8 @@
 	class n_model extends CI_Model{
 		function __construct(){
 			parent::__construct();
-			$this->load->database();
-			$this->load->library('session');
+			//$this->load->database();
+			//$this->load->library('session');
 		}
 
 		public function login($usuario,$pass){
@@ -25,15 +25,14 @@
 					on us.CODI_EMPL_PER = vlpt.CODI_EMPL_PER
 					INNER JOIN tb_rol tr
 					ON tr.ID = us.ROLASISTENCIA
-					where us.CODI_EMPL_PER = '44683270' and us.CLAVE = '123456'
+					where us.CODI_EMPL_PER = '".$usuario."' and us.CLAVE = '".$pass."'
 					and us.ACTIVO = 1
 					LIMIT 1 ";
 			$query = $this->db->query($sql)->result_array();
 			if(count($query) > 0){
-				return $query;
-			}else{
-				return false;
+				echo "entraste";
 			}
+			return $query;
 
 			
 		   // $this -> db -> where('CODI_EMPL_PER', $usuario);
@@ -136,7 +135,7 @@
 						on P.TIPO_OP = T_O.CODI_OPER_TOP
 						INNER JOIN v_lista_personal_total VLPT
 						on VLPT.CODI_EMPL_PER = US.CODI_EMPL_PER
-						where p.ID_USER=44683270 and VLPT.UBIC_FISI_CTR =6130
+						where p.ID_USER=".$id." and VLPT.UBIC_FISI_CTR =".$ubi_fisi."
 						group by P.ID, P.ID_USER,	US.DES_USUARIO,T_O.CODI_OPER_TOP,
 						T_O.TIPO_OPER_TOP,	T_O.DESC_OPER_TOP,	P.FECHA_INI,
 						P.FECHA_FIN, P.ESTADO
@@ -162,7 +161,14 @@
 							WHEN P.ESTADO=7 THEN 'AUTORIZADO'
 							ELSE 'NO AUTORIZADO' END AS ESTADO_DESC,
 							US.ROLASISTENCIA,
-							TR.DESCRIPCION
+							TR.DESCRIPCION,
+							sec_to_time(
+							timestampdiff(
+								SECOND,
+								P.FECHA_INI,
+								P.FECHA_FIN
+							)
+							)AS DIFERENCIA
 							from permiso P
 							INNER JOIN usuarios_sisvis US
 							ON P.ID_USER = US.CODI_EMPL_PER
@@ -194,7 +200,14 @@
 							WHEN P.ESTADO=7 THEN 'AUTORIZADO'
 							ELSE 'NO AUTORIZADO' END AS ESTADO_DESC,
 							US.ROLASISTENCIA,
-							TR.DESCRIPCION
+							TR.DESCRIPCION,
+							sec_to_time(
+							timestampdiff(
+								SECOND,
+								P.FECHA_INI,
+								P.FECHA_FIN
+							)
+							)AS DIFERENCIA
 							from permiso P
 							INNER JOIN usuarios_sisvis US
 							ON P.ID_USER = US.CODI_EMPL_PER
@@ -228,10 +241,28 @@
 			$this->db->query($sql);
 		}
 
-		function actualizarPapeleta($id, $estado){
-			$sql = "update permiso set estado=".$estado." where id = ".$id;
+		function actualizarPapeleta($data){
+			debug($data);
+			if($data['estado'] == 3){//administrativo
+				$sql = "update permiso set estado=".$data['estado'].",USER_APRUEBA = '".$data['USER_APRUEBA']."', 
+				FECHA_APRUEBA = '".$data['FECHA_APRUEBA']."' where id = ".$data['id'];
+	    	}else if($data['estado'] == 4){//jefe de unidad
+	    		$sql = "update permiso set estado=".$data['estado'].",USER_APRUEBA2 = '".$data['USER_APRUEBA']."', 
+				FECHA_APRUEBA2 = '".$data['FECHA_APRUEBA']."' where id = ".$data['id'];
+	    	}else if($data['estado'] == 5){//director ejecutivo
+	    		$sql = "update permiso set estado=".$data['estado'].",USER_APRUEBA3 = '".$data['USER_APRUEBA']."', 
+				FECHA_APRUEBA3 = '".$data['FECHA_APRUEBA']."' where id = ".$data['id'];
+	    	}else if($data['estado'] == 6){//director tecnico
+	    		$sql = "update permiso set estado=".$data['estado'].",USER_APRUEBA4 = '".$data['USER_APRUEBA']."', 
+				FECHA_APRUEBA4 = '".$data['FECHA_APRUEBA']."' where id = ".$data['id'];
+	    	}else if($data['estado'] == 7){//recursos humanos
+	    		$sql = "update permiso set estado=".$data['estado'].",USER_APRUEBA5 = '".$data['USER_APRUEBA']."', 
+				FECHA_APRUEBA5 = '".$data['FECHA_APRUEBA']."' where id = ".$data['id'];
+	    	}
 			$this->db->query($sql);
 		}
+
+		
 		
 
 }

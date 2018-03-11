@@ -43,60 +43,60 @@ $( document ).ready(function() {
 				//EMPLEADO VALIDACION
 				if(data[i].ESTADO == 7){
 					rol_opciones = `<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-check"></i></button>
-									<a href="${base_url}papeleta/impresion"><button><i class="ti ti-list"></i></button></a>`;
+									<a href="${base_url}papeleta/impresion/${data[i].ID}"><button><i class="ti ti-list"></i></button></a>`;
 				} else if(data[i].ESTADO == 1){
 					rol_opciones = `<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-check"></i></button>
 									<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-close"></i></button>`;
 				} else if(rol_usuario == 6 && data[i].ESTADO >=  2 && data[i].ESTADO <=  6){
 					rol_opciones = `<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-check"></i></button>
-									<button><i class="ti ti-reload"></i></button>`;
-				} else if(rol_usuario == 2  && data[i].ESTADO ==  2){
+									<a href="${base_url}papeleta/registro/0/${data[i].ID}"><button><i class="ti ti-pencil"></i></button></a>`;
+				} else if(rol_usuario == 1  && data[i].ESTADO ==  2){
 					rol_opciones = `<form action="${base_url}papeleta/actualizarPapeletaSegundoFiltro/${data[i].ID}/3">
 									<button><i class="ti ti-check"></i></button>
 									</form>
 									<form action="${base_url}papeleta/actualizarPapeletaSegundoFiltro/${data[i].ID}/1">
 									<button><i class="ti ti-close"></i></button>
 									</form>`;
-				}else if(rol_usuario == 2  && data[i].ESTADO >=  3 && data[i].ESTADO <=  6){
+				}else if(rol_usuario == 1  && data[i].ESTADO >=  3 && data[i].ESTADO <=  6){
 					rol_opciones = `<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-check"></i></button>
 									<button><i class="ti ti-reload"></i></button>`;
-				}else if(rol_usuario == 3 && data[i].ESTADO ==  2){
+				}else if(rol_usuario == 2 && data[i].ESTADO ==  2){
 					rol_opciones = `<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-check"></i></button>
 									<button><i class="ti ti-reload"></i></button>`;
-				}else if(rol_usuario == 3 && data[i].ESTADO ==  3){
+				}else if(rol_usuario == 2 && data[i].ESTADO ==  3){
 					rol_opciones = `<form action="${base_url}papeleta/actualizarPapeletaSegundoFiltro/${data[i].ID}/4">
 									<button><i class="ti ti-check"></i></button>
 									</form>
 									<form action="${base_url}papeleta/actualizarPapeletaSegundoFiltro/${data[i].ID}/1">
 									<button><i class="ti ti-close"></i></button>
 									</form>`;
-				} else if(rol_usuario == 3  && data[i].ESTADO >=  4 && data[i].ESTADO <=  6){
+				} else if(rol_usuario == 2  && data[i].ESTADO >=  4 && data[i].ESTADO <=  6){
 					rol_opciones = `<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-check"></i></button>
 									<button><i class="ti ti-reload"></i></button>`;
-				} else if(rol_usuario == 4 && data[i].ESTADO >=  2 && data[i].ESTADO <=  3){
+				} else if(rol_usuario == 3 && data[i].ESTADO >=  2 && data[i].ESTADO <=  3){
 					rol_opciones = `<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-check"></i></button>
 									<button><i class="ti ti-reload"></i></button>`;
-				} else if(rol_usuario == 4 && data[i].ESTADO ==  4){
+				} else if(rol_usuario == 3 && data[i].ESTADO ==  4){
 					rol_opciones = `<form action="${base_url}papeleta/actualizarPapeletaSegundoFiltro/${data[i].ID}/5">
 									<button><i class="ti ti-check"></i></button>
 									</form>
 									<form action="${base_url}papeleta/actualizarPapeletaSegundoFiltro/${data[i].ID}/1">
 									<button><i class="ti ti-close"></i></button>
 									</form>`;
-				} else if(rol_usuario == 4  && data[i].ESTADO >=  5 && data[i].ESTADO <=  6){
+				} else if(rol_usuario == 3  && data[i].ESTADO >=  5 && data[i].ESTADO <=  6){
 					rol_opciones = `<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-check"></i></button>
 									<button><i class="ti ti-reload"></i></button>`;
-				} else if(rol_usuario == 1 && data[i].ESTADO >=  2 && data[i].ESTADO <=  4){
+				} else if(rol_usuario == 4 && data[i].ESTADO >=  2 && data[i].ESTADO <=  4){
 					rol_opciones = `<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-check"></i></button>
 									<button><i class="ti ti-reload"></i></button>`;
-				} else if(rol_usuario == 1 &&  data[i].ESTADO ==  5){
+				} else if(rol_usuario == 4 &&  data[i].ESTADO ==  5){
 					rol_opciones = `<form action="${base_url}papeleta/actualizarPapeletaSegundoFiltro/${data[i].ID}/6">
 									<button><i class="ti ti-check"></i></button>
 									</form>
 									<form action="${base_url}papeleta/actualizarPapeletaSegundoFiltro/${data[i].ID}/1">
 									<button><i class="ti ti-close"></i></button>
 									</form>`;
-				} else if(rol_usuario == 1  && data[i].ESTADO ==  6){
+				} else if(rol_usuario == 4  && data[i].ESTADO ==  6){
 					rol_opciones = `<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-check"></i></button>
 									<button><i class="ti ti-reload"></i></button>`;
 				} else if(rol_usuario == 5  && data[i].ESTADO >=  2 && data[i].ESTADO <=  5){

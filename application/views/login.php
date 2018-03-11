@@ -28,7 +28,7 @@
           <span class="login100-form-title-1">             
           </span>
         </div> 
-        <form name="frm_admin" id="frm_admin" class="login100-form" action="<?= site_url('login/ingresar') ?>" method="post">
+        <form name="frm_admin" id="frm_admin" class="login100-form" action="<?php echo base_url(); ?>login/ingresar" method="post">
           <div class="wrap-input100 validate-input m-b-26" id='valido' style="display: none;">
             <button type="button" id='valido' class="close">&times;</button>
             <span></span>

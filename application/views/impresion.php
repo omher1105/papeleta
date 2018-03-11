@@ -28,8 +28,9 @@
 	}
 </style>
 <div class="row">
-	<div class="container" style="background-color: #ffffff;font-size: 10px;width: 813px;">
+	<div class="container" style="background-color: #ffffff;font-size: 10px;width: 813px;margin-top: 40px">
 		<div class="col-md-12">
+			<br>
 			<div class="col-md-6" align="left">
 				<img src="http://series.inei.gob.pe/becaIES/images/logoInei.png" width="25%">
 			</div>

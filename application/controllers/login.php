@@ -22,19 +22,16 @@ class Login extends CI_Controller {
 			
 	    	public function ingresar()
 			{
-				$usuario = $this->input->post('user');
-				$pass = $this->input->post('pass');			
+				$usuario = $_POST['user'];
+				$pass = $_POST['pass'];		
 				
-				if (isset($usuario)) {
-					$resp = $this->n_model->login($usuario,$pass);
-		  			if (isset($resp)) {
-		  				$_SESSION['usuario'] = $resp;
-		  				debug($_SESSION);
-		  				redirect('papeleta/ficha');
-					}else{
-		   				redirect('');
-	     			}
-				}
+				$sesion = $this->n_model->login($usuario,$pass);
+		  	 	 if (count($sesion) > 0) {
+		            $_SESSION['usuario'] = $sesion;
+		            redirect('papeleta/ficha');
+		        } else {
+		            redirect('/');
+		        }
 
 			}
 

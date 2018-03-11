@@ -56,8 +56,8 @@ public function __construct(){
 		//debug($_POST);
 		echo $estado;
 		if(isset($_POST['dpx-motivo']) && isset($_POST['dpx-tipo'])){
-			echo "entraste";
-			debug($_POST);
+			//echo "entraste";
+			//debug($_POST);
 			$hoy = date('d-m-Y h:m:i');
 			if($_POST['dpx-tipo'] == 'H'){
 				echo "entraste a hora";
@@ -74,7 +74,7 @@ public function __construct(){
 			$data['ESTADO'] = 2;
 			$data['ID_USER'] = $_SESSION['usuario'][0]['CODI_EMPL_PER'];
 			$data['IP_REG'] = getUserIP();
-			debug($data);
+			//debug($data);
 			//debug($_SERVER);
 			if($estado == 1){
 				$this->n_model->crearPapeleta($data);	
@@ -116,12 +116,16 @@ public function __construct(){
 
 
     function actualizarPapeletaSegundoFiltro($id, $estado){
-    	$this->n_model->actualizarPapeleta($id, $estado);
+    	$data['id'] = $id;
+    	$data['estado'] = $estado;
+    	$data['USER_APRUEBA'] = $_SESSION['usuario'][0]['CODI_EMPL_PER'];
+    	$data['FECHA_APRUEBA'] = date('d-m-Y h:m:i');
+    	$this->n_model->actualizarPapeleta($data);
     	redirect('papeleta/ficha');
     }
 
     
-	function impresion(){
+	function impresion($id){
 		$this->load->view('impresion');
 	}
 	

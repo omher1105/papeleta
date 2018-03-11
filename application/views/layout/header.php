@@ -58,3 +58,4 @@
 		rol_usuario = "<?php echo $_SESSION['usuario'][0]['ROLASISTENCIA']; ?>";
 	})
 </script>
+<?php // debug($_SESSION); ?>

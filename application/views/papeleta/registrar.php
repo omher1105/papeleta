@@ -5,7 +5,6 @@ $url = base_url().'papeleta/registrarPapeleta/1';
 if(isset($papeleta_recuperada[0]['ID'])){
   $url = base_url().'papeleta/registrarPapeleta/2';
 }
-  
  //echo $url;?>
 <div class="row">
   <div class="container" style="width:70%">
@@ -128,13 +127,20 @@ if(isset($papeleta_recuperada[0]['ID'])){
       </div>
     </div>
     <div class="col-md-12" align="center">
+      <?php if(isset($papeleta_recuperada)){ ?>
+      <button class="btn btn-primary" type="submit">
+        <i class="ti ti-archive"></i>
+          Actualizar Papeleta
+      </button>
+      <?php }else{?>
       <button class="btn btn-primary" type="submit">
         <i class="ti ti-archive"></i>
           Registrar
       </button>
-      <a class="btn btn-primary">
+      <?php } ?>
+      <a class="btn btn-primary" href="<?php echo base_url()?>papeleta/ficha">
         <i class="ti ti-archive"></i>
-        Listar
+        Volver a la pagina principal
       </a>
     </div>
     </form>
