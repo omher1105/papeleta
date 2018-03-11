@@ -19,10 +19,29 @@ public function __construct(){
 		}
 	}
 
-	function registro(){
+	function registro($error = false, $id = false){
+		if($error == true){
+			if($error == 1){
+				$data['error'] = 'LOS CAMPOS SON OBLIGATORIOS : MOTIVO DE SALIDA Y TIPO';
+			}
+		}
+
+		if(isset($id) && isset($error)){
+			if($error == 0){
+				$data['papeleta_recuperada'] = $this->n_model->buscarPapeleta($id);
+				$data['additional_script'] = "
+					<script>
+						$('#s_tipo').val('H').trigger('change');
+					    $('#time-frame').css('display','block');
+					    $('#date-frame').css('display','none');
+					</script>";
+			}
+		}
+		
 		$data['tiposalida1'] = $this->n_model->get_tiposalidaDesc();
 		$data['tiposalida2'] = $this->n_model->get_tiposalida();
 		$data['script'] = '<script src="'.base_url().'custom/registro.js"></script>';
+		//debug($data);
 		layout('papeleta/registrar', $data);
 	}
 
@@ -32,26 +51,53 @@ public function __construct(){
 		layout('papeleta/ficha', $data);
 	}
 
-	function registrarPapeleta(){
+	function registrarPapeleta($estado){
 		//debug($_SESSION);
-		if($_POST['s_tipo'] == 'D'){
-			$data['FECHA_INI'] = $_POST['f_inicio'].' 00:00:00';
-			$data['FECHA_FIN'] = $_POST['f_fin'].' 24:00:00';
-		}else if($_POST['s_tipo'] == 'H'){
-			$data['FECHA_INI'] = $_POST['f_inicio'].' '.$_POST['t_inicio'];
-			$data['FECHA_FIN'] = $_POST['f_fin'].' '.$_POST['t_fin'];
+		//debug($_POST);
+		echo $estado;
+		if(isset($_POST['dpx-motivo']) && isset($_POST['dpx-tipo'])){
+			echo "entraste";
+			debug($_POST);
+			$hoy = date('d-m-Y h:m:i');
+			if($_POST['dpx-tipo'] == 'H'){
+				echo "entraste a hora";
+				$data['FECHA_INI'] = $_POST['datetime1'];
+				$data['FECHA_FIN'] = $_POST['datetime2'];
+			}else if($_POST['dpx-tipo'] == 'D'){
+				echo "entraste a dia";
+				$data['FECHA_INI'] = $_POST['date1'];
+				$data['FECHA_FIN'] = $_POST['date2'];
+			}
+			//$data['ID'] = $_SESSION['CODI_EMPL_PER'];
+			$data['TIPO_OP'] = $_POST['dpx-motivo'];
+			$data['FECHA_REGISTRO'] = $hoy;
+			$data['ESTADO'] = 2;
+			$data['ID_USER'] = $_SESSION['usuario'][0]['CODI_EMPL_PER'];
+			$data['IP_REG'] = getUserIP();
+			debug($data);
+			//debug($_SERVER);
+			if($estado == 1){
+				$this->n_model->crearPapeleta($data);	
+			}else{
+				$data['ID'] = $_POST['id_papeleta'];
+				$this->n_model->actualizarPapeletaId($data);
+			}
+			redirect('papeleta/ficha');
+		}else{
+			redirect('papeleta/registro/1');
 		}
-		//$data['ID'] = $_SESSION['CODI_EMPL_PER'];
-		$data['TIPO_OP'] = $_POST['TIPO_OP'];
-		$data['FECHA_REGISTRO'] = '2013-05-11 00:00:00';
-		$data['ESTADO'] = 2;
-		$data['ID_USER'] = $_SESSION['CODI_EMPL_PER'];
-		//debug($data);
-		$this->n_model->crearPapeleta($data);
-
-		redirect('papeleta/ficha');
+	
 	}
 
+
+	function restarFechas($fi, $ff){
+		$diff = abs(strtotime($ff) - strtotime($fi));
+		$data['years'] = floor($diff / (365*60*60*24));
+		$data['months'] = floor(($diff - $data['years'] * 365*60*60*24) / (30*60*60*24));
+		$data['days'] = floor(($diff - $data['years'] * 365*60*60*24 - $data['months']*30*60*60*24)/ (60*60*24));
+		//debug($data);
+		return $data;
+	}
 
 	 public function ajax_registrar_pedido() {
         $fecha_ini = $this->input->get('fecha_i').' '.$this->input->get('hora_ini');
@@ -64,7 +110,7 @@ public function __construct(){
     
     function listarPapeleta(){
     	header('Content-Type: application/json');
-    	$data = $this->n_model->listarPapeleta($_SESSION['CODI_EMPL_PER'], $_SESSION['ROLASISTENCIA']);
+    	$data = $this->n_model->listarPapeleta($_SESSION['usuario'][0]['CODI_EMPL_PER'], $_SESSION['usuario'][0]['ROLASISTENCIA'], $_SESSION['usuario'][0]['UBIC_FISI_CTR']);
     	echo json_encode($data);
     }
 

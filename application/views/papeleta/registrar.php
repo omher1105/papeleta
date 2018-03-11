@@ -1,60 +1,153 @@
-<br><br><br><br><br>
-<div class="lec_over" data-color="#333" data-opacity="0.05"></div>
-<div class="container text-center" id="lec _virtual">
-  <h3> <CENTER> <i class="ti ti-book lec_icon_box"></i> Registrar <strong>Papeleta</strong> </CENTER></h3>
-  <p> <CENTER> <b>Fecha Registro:</b>  <?php echo date("Y-m-d");?> </CENTER> </p>
-</div>
-<form action="<?php echo base_url() ?>papeleta/registrarPapeleta" method="POST">
-  <div class="row" >
-    <div class="container" style="border: 1px solid #000;">
-      <br>
-      <div class="col s9">
-          <select id="s_nombre" name="TIPO_OP" class="form-control" required="required">
-            <option value="0">Seleccione Salida </option>
-            <?php foreach($tiposalida1 as $depa) {  ?>
-              <option value="<?php echo $depa['CODI_OPER_TOP']; ?>"><?php echo $depa['DESC_OPER_TOP']; ?></option>
-            <?php } ?>
+<br><br><br><br><br><br><br><br>
+<?php  
+$url = base_url().'papeleta/registrarPapeleta/1';
+//debug($papeleta_recuperada);
+if(isset($papeleta_recuperada[0]['ID'])){
+  $url = base_url().'papeleta/registrarPapeleta/2';
+}
+  
+ //echo $url;?>
+<div class="row">
+  <div class="container" style="width:70%">
+    <div class="col-md-12" align="center">
+      <h3><i class="ti ti-credit-card lec_icon_box"></i><strong>  Detalle de Operaciones por Trabajador</strong></h3>
+    </div>
+    <div class="col-md-12">
+      <br><br>
+    </div>
+    <?php if(isset($error)){ ?>
+      <div class="col-md-12" align="center" style="color:#fff">
+        <span style="background-color:red"><?php echo $error; ?></span>
+      </div>
+    <?php } ?>
+    <form action="<?php echo $url; ?>" method="post" id="formRegistro">
+    <div class="col-md-12">
+      <div class="col-md-9">
+        <div class="form-group">
+          <label>Motivo de salida</label>
+          <?php if(isset($papeleta_recuperada)){ ?>
+          <input type="hidden" name="id_papeleta" value="<?php echo $papeleta_recuperada[0]['ID'] ?>">
+          <?php } ?>    
+          <select class="form-control" name="dpx-motivo" id="dpx-motivo" required="true">
+            <option value="0" selected disabled="true">Seleccione</option>
+            <?php foreach($tiposalida1 as $depa){ 
+              if($papeleta_recuperada[0]['TIPO_OP'] == $depa['CODI_OPER_TOP']){ ?>
+                  <option selected value="<?php echo $depa['CODI_OPER_TOP']; ?>">
+                    <?php echo $depa['DESC_OPER_TOP']; ?>
+                  </option>
+
+              <?php }else{ ?>
+                <option  value="<?php echo $depa['CODI_OPER_TOP']; ?>">
+                    <?php echo $depa['DESC_OPER_TOP']; ?>
+                  </option>
+              <?php } } ?>
           </select>
-      </div>
-      <div class="col s3">
-         <select id="s_tipo" name="s_tipo" class="form-control" required="required">
-                <option value="0">Seleccione Salida </option>
-                <?php foreach($tiposalida2 as $depa) {  ?>
-                    <option value="<?php echo $depa['TIPO_OPER_TOP']; ?>"><?php echo $depa['TIPO_OPER_TOP']; ?></option>
-                    <?php } ?>
-          </select> 
-      </div>
-      <br><br>
-      <div class="col s9" id="date-frame">
-        <div class="col s6">
-          <!-- <input type="date" name="f_inicio" class="datepicker"> -->
-           <input type="text" class="form-control datepicker" id="f_inicio" name="f_inicio"  required="required" placeholder ="Fecha Final" readonly  />
-        </div>
-        <div class="col s6">
-          <!-- <input type="date" name="f_fin" class="datepicker"> -->
-          <input type="text" class="form-control datepicker" id="f_fin" name="f_fin"  required="required" placeholder ="Fecha Final" readonly  />
         </div>
       </div>
-      <br>
-      <div class="col s9" id="time-frame">
-        <div class="col s6">
-          <input type="time" name="t_inicio" class="datetimepicker">
-          <!-- <input type="text" class="form-control datetimepicker" id="t_inicio" name="t_inicio"  required="required" placeholder ="Fecha Final" readonly  /> -->
-        </div>
-        <div class="col s6">
-          <input type="time" name="t_fin">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label>Tipo</label>
+          <select class="form-control" id="s_tipo" name="dpx-tipo" required="true">
+            <option value="Default" selected disabled="true">Seleccione</option>
+            <?php foreach($tiposalida2 as $depa){ ?>
+            <option value="<?php echo $depa['TIPO_OPER_TOP']; ?>">
+              <?php echo $depa['TIPO_OPER_TOP']; ?>
+            </option>
+            <?php  } ?>
+          </select>
         </div>
       </div>
-      <br><br>
-      <div class="col s12" align="center" style="padding-bottom: 16px;">
-        <button class="btn" type="submit"> <i class="ti ti-archive"></i>Registrar </button></td>
-        <a href="<?php echo base_url()?>papeleta/ficha" class="btn"> <i class="ti ti-files"></i>Listar</a>  
+    </div>
+    <div class="col-md-12" id="date-frame">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Fecha de Inicio</label>
+           <div class="input-group">
+            <div class="input-group-addon">
+             <i class="fa fa-calendar">
+             </i>
+            </div>
+            <?php if(isset($papeleta_recuperada)){ ?>
+              <input class="form-control date" id="date1" name="date1" placeholder="MM/DD/YYYY" type="text" value="<?php echo $papeleta_recuperada[0]['FECHA_INI']?>"/>
+            <?php }else{?>
+              <input class="form-control date" id="date1" name="date1" placeholder="MM/DD/YYYY" type="text"/>
+            <?php } ?>
+           </div>
+         </div>
       </div>
-    </div>  
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Fecha de Fin</label>
+           <div class="input-group">
+            <div class="input-group-addon">
+             <i class="fa fa-calendar">
+             </i>
+            </div>
+            <?php if(isset($papeleta_recuperada)){ ?>
+              <input class="form-control date" id="date2" name="date2" placeholder="MM/DD/YYYY" type="text" value="<?php echo $papeleta_recuperada[0]['FECHA_FIN']?>"/>
+            <?php }else{?>
+              <input class="form-control date" id="date2" name="date2" placeholder="MM/DD/YYYY" type="text"/>
+            <?php } ?>
+           </div>
+         </div>
+      </div>
+    </div>
+    <div class="col-md-12" id="time-frame" style="display: none">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Fecha y Hora de Inicio</label>
+           <div class="input-group">
+            <div class="input-group-addon">
+             <i class="fa fa-calendar">
+             </i>
+            </div>
+            <?php if(isset($papeleta_recuperada)){ ?>
+              <input class="form-control datetime" id="datetime1" name="datetime1" placeholder="MM/DD/YYYY" type="text" value="<?php echo $papeleta_recuperada[0]['FECHA_INI']?>"/>
+            <?php }else{?>
+              <input class="form-control datetime" id="datetime1" name="datetime1" placeholder="MM/DD/YYYY" type="text"/>
+            <?php } ?>
+           </div>
+         </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Fecha y Hora de Fin</label>
+           <div class="input-group">
+            <div class="input-group-addon">
+             <i class="fa fa-calendar">
+             </i>
+            </div>
+            <?php if(isset($papeleta_recuperada)){ ?>
+              <input class="form-control datetime" id="datetime2" name="datetime2" placeholder="MM/DD/YYYY" type="text" value="<?php echo $papeleta_recuperada[0]['FECHA_FIN']?>"/>
+            <?php }else{?>
+              <input class="form-control datetime" id="datetime2" name="datetime2" placeholder="MM/DD/YYYY" type="text"/>
+            <?php } ?>
+            
+           </div>
+         </div>
+      </div>
+    </div>
+    <div class="col-md-12" align="center">
+      <button class="btn btn-primary" type="submit">
+        <i class="ti ti-archive"></i>
+          Registrar
+      </button>
+      <a class="btn btn-primary">
+        <i class="ti ti-archive"></i>
+        Listar
+      </a>
+    </div>
+    </form>
   </div>
-</form>
+</div>
 <?php 
   if(isset($script)){
     echo $script;
+  }
+?>
+
+<?php 
+  if(isset($additional_script)){
+    echo $additional_script;
   }
 ?>

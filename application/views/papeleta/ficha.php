@@ -1,4 +1,5 @@
-
+<?php $sesion =  $_SESSION['usuario'][0];
+?>
 <div class="lec_france">
 <div class="lec_page" id="lec_page">
     <!-- To Top -->
@@ -18,9 +19,9 @@
               <tr>
                 <td colspan=4><input type="text" class="form-control datepicker" name="fecha_inic"  required="required" placeholder ="Fecha de Inicio" readonly  />
                 </td>
-                <td colspan=2><input type="text" class="form-control" id="usuario" name="codEmpleado"  required="required"  value="<?php echo $_SESSION['CODI_EMPL_PER'];?>" placeholder ="Cod. Empleado"  readonly />
+                <td colspan=2><input type="text" class="form-control" id="usuario" name="codEmpleado"  required="required"  value="<?php echo $sesion['CODI_EMPL_PER'];?>" placeholder ="Cod. Empleado"  readonly />
                 </td>
-                <td colspan=4><input type="text" class="form-control" id="usuario_nom" name="usuario_nom"  required="required" value="<?php echo $_SESSION['DES_USUARIO'];?>" placeholder ="Nombre Empleado"  readonly />
+                <td colspan=4><input type="text" class="form-control" id="usuario_nom" name="usuario_nom"  required="required" value="<?php echo $sesion['DES_USUARIO'];?>" placeholder ="Nombre Empleado"  readonly />
                 </td>
               </tr>
               
@@ -76,5 +77,5 @@
                 
         </section>
 
-        <?php //debug($_SESSION); ?>
+        <?php //echo base_url();?>
 

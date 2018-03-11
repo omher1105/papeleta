@@ -1,9 +1,9 @@
 $( document ).ready(function() {
 
-	$('.datepicker').datepicker({
-	    format: 'mm/dd/yyyy',
-	    startDate: '-3d'
-	});
+	// $('.datepicker').datepicker({
+	//     format: 'mm/dd/yyyy',
+	//     startDate: '-3d'
+	// });
 
 	   
 
@@ -24,7 +24,7 @@ $( document ).ready(function() {
 						<th style="text-align:center">FECHA INICIO</th>
 						<th style="text-align:center">FECHA FIN</th>
 						<th style="text-align:center">ESTADO</th>
-						<th style="text-align:center">DD/HH/MM</th>
+						<th style="text-align:center">HH/MM/SS</th>
 					</tr>
 				</thead><tbody></tbody>`);
 			for(var i in data){
@@ -124,7 +124,7 @@ $( document ).ready(function() {
 						<td>${data[i].FECHA_INI}</td>
 						<td>${data[i].FECHA_FIN ? data[i].FECHA_FIN : data[i].FECHA_INI}</td>
 						<td style="text-align:center;background-color:${background_color};color:${color}">${data[i].ESTADO_DESC}</td>
-						<td></td>
+						<td>${data[i].DIFERENCIA}</td>
 					</tr>
 				`);
 			}

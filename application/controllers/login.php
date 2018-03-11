@@ -27,32 +27,11 @@ class Login extends CI_Controller {
 				
 				if (isset($usuario)) {
 					$resp = $this->n_model->login($usuario,$pass);
-		  			if ($resp) {
-		  				$user= [
-			  				"CODUSER" => $resp->CODUSER,
-			  				"TIPO" => $resp->CODUSER,
-
-			  				"DES_USUARIO" => $resp->DES_USUARIO,
-			  				"ACTIVO" => $resp->ACTIVO,
-			  				"FECHAINGRESO" => $resp->FECHAINGRESO,
-
-			  				"CORREO" => $resp->CORREO,
-			  				"FECHAACTUALIZADO" => $resp->FECHAACTUALIZADO,
-			  				"IPACTUALIZADO" => $resp->IPACTUALIZADO,
-			  				"ROLASISTENCIA" => $resp->ROLASISTENCIA,
-			  				"CODI_EMPL_PER" => $resp->CODI_EMPL_PER,
-			  				
-		  				];
-		  
-	  			         $this->session->set_userdata($user);
-						
-	  			         
-
-	  			         //var_dump($data);
-	  			        // $data['script'] = '<script src='.base_url().'custom/ficha.js></script>';
-						redirect('papeleta/ficha');						
-					       }
-					else{
+		  			if (isset($resp)) {
+		  				$_SESSION['usuario'] = $resp;
+		  				debug($_SESSION);
+		  				redirect('papeleta/ficha');
+					}else{
 		   				redirect('');
 	     			}
 				}
