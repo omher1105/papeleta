@@ -109,7 +109,10 @@ $( document ).ready(function() {
 									<form action="${base_url}papeleta/actualizarPapeletaSegundoFiltro/${data[i].ID}/1">
 									<button><i class="ti ti-close"></i></button>
 									</form>`;
-				}
+				} else if(rol_usuario == 7  && data[i].ESTADO >=  1 && data[i].ESTADO <=  6){
+					rol_opciones = `<button disabled="true" style="background-color:#a5a5a5"><i class="ti ti-check"></i></button>
+									<button><i class="ti ti-reload"></i></button>`;
+				} 
 
 				$('#tbl_requerimiento>tbody').append(`
 					<tr>
