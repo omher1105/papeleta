@@ -262,7 +262,43 @@
 			$this->db->query($sql);
 		}
 
-		
+		function mostrarImpresion($id){
+			$sql = "select 
+					ID,
+					FECHA_INI,
+					FECHA_FIN,
+					TIPO_OP,
+					FECHA_REGISTRO,
+					ESTADO,
+					ID_USER,
+					us.DES_USUARIO DES_USUARIO,
+					USER_APRUEBA,
+					us1.DES_USUARIO DES_USUARIO1,
+					USER_APRUEBA2,
+					us2.DES_USUARIO DES_USUARIO2,
+					USER_APRUEBA3,
+					us3.DES_USUARIO DES_USUARIO3,
+					USER_APRUEBA4,
+					us4.DES_USUARIO DES_USUARIO4,
+					USER_APRUEBA5,
+					us5.DES_USUARIO DES_USUARIO5
+					from permiso
+					INNER JOIN usuarios_sisvis us
+					on us.CODI_EMPL_PER = ID_USER
+					INNER JOIN usuarios_sisvis us1
+					on us1.CODI_EMPL_PER = USER_APRUEBA
+					INNER JOIN usuarios_sisvis us2
+					on us2.CODI_EMPL_PER = USER_APRUEBA2
+					INNER JOIN usuarios_sisvis us3
+					on us3.CODI_EMPL_PER = USER_APRUEBA3
+					INNER JOIN usuarios_sisvis us4
+					on us4.CODI_EMPL_PER = USER_APRUEBA4
+					INNER JOIN usuarios_sisvis us5
+					on us5.CODI_EMPL_PER = USER_APRUEBA5
+					where id = ".$id;
+			$query = $this->db->query($sql)->result_Array();
+			return $query;
+		}
 		
 
 }

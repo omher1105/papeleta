@@ -26,7 +26,13 @@
 	    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 	    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 	}
+	.papeleta-opcion{
+		width: 25%;
+    	text-align: center;
+    	float: right;
+	}
 </style>
+<?php //debug($impresion);?>
 <div class="row">
 	<div class="container" style="background-color: #ffffff;font-size: 10px;width: 813px;margin-top: 40px">
 		<div class="col-md-12">
@@ -48,43 +54,43 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label>CODIGO PERSONAL</label>
-							<input class="form-control" type="text" name="" value="123456">
+							<input class="form-control" type="text" name="" value="<?php echo $impresion[0]['ID_USER'];?>" disabled="true">
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
 							<label>NUMERO DE TARJETA</label>
-							<input  class="form-control" type="text" name="" value="">
+							<input  class="form-control" type="text" name="" value="" disabled="true">
 						</div>
 					</div>
 				</div>
 				<div class="col-md-12">
 					<div class="form-group">
-					<input class="form-static" type="text" name="" value="FRANKLIN JHINO ARIAS MORENO">
+					<input class="form-static" type="text" name="" value="<?php echo $impresion[0]['DES_USUARIO'];?>" disabled="true">
 					<label>APELLIDOS Y NOMBRES DEL TRABAJADOR</label>
 					</div>
 				</div>
 				<div class="col-md-12">
 					<div class="form-group">
-					<input class="form-static" type="text" name="" value="PABLO ZEGARRA">
+					<input class="form-static" type="text" name="" value="<?php echo $impresion[0]['DES_USUARIO2'];?>" disabled="true">
 					<label>JEFE UNIDAD</label>
 					</div>
 				</div>
 				<div class="col-md-12">
 					<div class="form-group">
-					<input class="form-static" type="text" name="" value="BERTHA ARCONDO HUANACO">
+					<input class="form-static" type="text" name="" value="<?php echo $impresion[0]['DES_USUARIO3'];?>" disabled="true">
 					<label>DIRECTOR EJECUTIVO</label>
 					</div>
 				</div>
 				<div class="col-md-12">
 					<div class="form-group">
-					<input class="form-static" type="text" name="" value="MANUEL AMADOR MATOS ALVARADO">
+					<input class="form-static" type="text" name="" value="<?php echo $impresion[0]['DES_USUARIO4'];?>" disabled="true">
 					<label>DIRECTOR TECNICO/NACIONAL</label>
 					</div>
 				</div>
 				<div class="col-md-12">
 					<div class="form-group">
-					<input class="form-static" type="text" name="" value="ANA PAIRAZAMAN ZULOETA">
+					<input class="form-static" type="text" name="" value="<?php echo $impresion[0]['DES_USUARIO5'];?>" disabled="true">
 					<label>V.B° DE OEPER</label>
 					</div>
 				</div>
@@ -109,19 +115,19 @@
 						</tr>
 						<tr>
 							<td>1.ATENCION MEDICA (INEI)</td>
-							<td><input  type="text" name="" readonly="true" value="X" disabled="true"></td>
+							<td><input  class="papeleta-opcion" type="text" name="" readonly="true" value="" disabled="true"></td>
 						</tr>
 						<tr>
 							<td>2.ATENCION MEDICA (ESSALUD)</td>
-							<td><input type="text" name="" readonly="true" ></td>
+							<td><input class="papeleta-opcion" type="text" name="" readonly="true" disabled="true"></td>
 						</tr>
 						<tr>
 							<td>3.TRAMITE DE PRESTACIONES</td>
-							<td><input type="text" name="" readonly="true" ></td>
+							<td><input class="papeleta-opcion" type="text" name="" readonly="true" disabled="true"></td>
 						</tr>
 						<tr>
 							<td>4.COMISION DE SERVICIOS</td>
-							<td><input type="text" name="" readonly="true" ></td>
+							<td><input class="papeleta-opcion" type="text" name="" readonly="true" disabled="true"></td>
 						</tr>
 						<tr><td><br></td><td><br></td></tr>
 						<tr>
@@ -132,7 +138,7 @@
 							<td>1.PARTICULAR: TRAMITES PERSONALES<br>
 								<label>(Maximo 2 horas)</label>	</td>
 							<td>
-								<input  type="text" name="" readonly="true" value="X" disabled="true">
+								<input  class="papeleta-opcion" type="text" name="" readonly="true" value="" disabled="true">
 							</td>
 
 						</tr>
@@ -152,13 +158,13 @@
 							<td><label>REGRESO</label></td>
 						</tr>
 						<tr>
-							<td>2018-03-06</td>
-							<td>2018-03-06</td>
+							<td><?php echo $impresion[0]['FECHA_INI']?></td>
+							<td><?php echo $impresion[0]['FECHA_FIN']?></td>
 						</tr>
 					</table>
 				</div>
 				<div class="col-md-12">
-					<label>Lima, 06 de marzo del 2018</label>
+					<label>Lima, <?php echo date('d')?> de <?php echo date('M')?> del <?php echo date('Y')?></label>
 				</div>
 			</div>
 		</div>

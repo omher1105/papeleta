@@ -125,8 +125,14 @@ public function __construct(){
     }
 
     
-	function impresion($id){
-		$this->load->view('impresion');
+	function impresion($id = false){
+		if($id == false){
+			redirect('papeleta/ficha');
+		}else{
+			$data['impresion'] = $this->n_model->mostrarImpresion($id);
+			$this->load->view('impresion', $data);
+		}
+		
 	}
 	
 
