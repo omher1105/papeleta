@@ -114,20 +114,16 @@
 							<td></td>
 						</tr>
 						<tr>
-							<td>1.ATENCION MEDICA (INEI)</td>
-							<td><input  class="papeleta-opcion" type="text" name="" readonly="true" value="" disabled="true"></td>
+							<td>1.PERMISO PARTICULAR POR HORAS</td>
+							<td><input  id="p1_opcion" class="papeleta-opcion" type="text" name="" readonly="true" value="" disabled="true"></td>
 						</tr>
 						<tr>
-							<td>2.ATENCION MEDICA (ESSALUD)</td>
-							<td><input class="papeleta-opcion" type="text" name="" readonly="true" disabled="true"></td>
+							<td>2.COMISION DE SERVICIOS POR HORAS</td>
+							<td><input id="p2_opcion" class="papeleta-opcion" type="text" name="" readonly="true" disabled="true"></td>
 						</tr>
 						<tr>
-							<td>3.TRAMITE DE PRESTACIONES</td>
-							<td><input class="papeleta-opcion" type="text" name="" readonly="true" disabled="true"></td>
-						</tr>
-						<tr>
-							<td>4.COMISION DE SERVICIOS</td>
-							<td><input class="papeleta-opcion" type="text" name="" readonly="true" disabled="true"></td>
+							<td>3.PERMISO A CONTROL ESSALUD</td>
+							<td><input id="p3_opcion" class="papeleta-opcion" type="text" name="" readonly="true" disabled="true"></td>
 						</tr>
 						<tr><td><br></td><td><br></td></tr>
 						<tr>
@@ -170,7 +166,19 @@
 		</div>
 	</div>
 </div> 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"> </script>
+<script type="text/javascript">
+	t_option = '<?php echo  $impresion[0]['TIPO_OP'] ?>';
+	$(document).ready(function(){
+		if(t_option == 35){
+			$('#p1_opcion').val('X');
+		}else if(t_option == 19){
+			$('#p2_opcion').val('X');
+		}else{
+			$('#p3_opcion').val('X');
+		}
+	});
+</script>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
